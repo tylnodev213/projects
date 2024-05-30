@@ -11,15 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 128);
-            $table->string('email', 128)->unique();
-            $table->string('password', 64);
-            $table->string('phone_number', 20);
-            $table->char('role', 1);
-            $table->text('address');
-            $table->rememberToken();
+            $table->bigInteger('user_id');
+            $table->bigInteger('tour_id');
+            $table->integer('rating');
+            $table->timestamp('review_date');
+            $table->text('comment');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -30,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('reviews');
     }
 };
